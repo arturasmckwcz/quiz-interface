@@ -1,0 +1,14 @@
+[
+  {
+    "name": "questionnaire_question",
+    "sql": "CREATE TABLE questionnaire_question(id INTEGER PRIMARY KEY NOT NULL, description TEXT NOT NULL, short_code TEXT NOT NULL)"
+  },
+  {
+    "name": "patient_questionnaire",
+    "sql": "CREATE TABLE patient_questionnaire (id INTEGER PRIMARY KEY NOT NULL, patient_id INTEGER NOT NULL, created_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, updated_at TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP, completed_at TEXT)"
+  },
+  {
+    "name": "questionnaire_answer",
+    "sql": "CREATE TABLE questionnaire_answer (id INTEGER PRIMARY KEY NOT NULL, questionnaire_id INTEGER NOT NULL, question_id INTEGER NOT NULL, answer TEXT NOT NULL, FOREIGN KEY(questionnaire_id) REFERENCES patient_questionnaire(id), FOREIGN KEY(question_id) REFERENCES questionnaire_question(id))"
+  }
+]
