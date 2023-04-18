@@ -4,13 +4,16 @@ import {
   PatientQuestionnaire,
   QuestionnaireAnswer,
   QuestionnaireQuestion,
+  User,
 } from '../models';
 
 let sequelize: Sequelize;
+
 const models = [
   PatientQuestionnaire,
   QuestionnaireAnswer,
   QuestionnaireQuestion,
+  User,
 ];
 
 export const getSequelize = (): Sequelize => {
