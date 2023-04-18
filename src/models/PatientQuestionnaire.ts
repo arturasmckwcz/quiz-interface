@@ -4,12 +4,15 @@ import {
   AutoIncrement,
   Column,
   DataType,
+  HasMany,
   Model,
   PrimaryKey,
   Table,
   Unique,
 } from 'sequelize-typescript';
 import { Field, ObjectType } from 'type-graphql';
+
+import { QuestionnaireAnswer } from './QuestionnaireAnswer';
 
 export interface PatientQuestionnaireAttributes {
   id: number;
@@ -77,4 +80,8 @@ export class PatientQuestionnaire
   @Column(DataType.STRING)
   @Field(() => String)
   updatedAt: string;
+
+  @Field(() => [QuestionnaireAnswer], { nullable: true })
+  @HasMany(() => QuestionnaireAnswer, 'questionnaireId')
+  answers: QuestionnaireAnswer[];
 }
