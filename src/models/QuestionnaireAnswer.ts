@@ -2,6 +2,7 @@ import { Optional } from 'sequelize/types';
 import {
   AllowNull,
   AutoIncrement,
+  BelongsTo,
   Column,
   DataType,
   Model,
@@ -10,11 +11,12 @@ import {
   Unique,
 } from 'sequelize-typescript';
 import { Field, ObjectType } from 'type-graphql';
+import { QuestionnaireQuestion } from './QuestionnaireQuestion';
 
 export interface QuestionnaireAnswerAttributes {
   id: number;
-  questionnaire_id: number;
-  question_id: number;
+  questionnaireId: number;
+  questionId: number;
   answer: string;
 }
 type QuestionnaireAnswerAttributesDefaultValues = 'id';
@@ -48,15 +50,19 @@ export class QuestionnaireAnswer
   @AllowNull(false)
   @Column(DataType.INTEGER)
   @Field(() => Number)
-  questionnaire_id: number;
+  questionnaireId: number;
 
   @AllowNull(false)
   @Column(DataType.INTEGER)
   @Field(() => Number)
-  question_id: number;
+  questionId: number;
 
   @AllowNull(false)
   @Column(DataType.STRING)
   @Field(() => String)
   answer: string;
+
+  @Field(() => QuestionnaireQuestion, { nullable: true })
+  @BelongsTo(() => QuestionnaireQuestion, 'questionId')
+  question?: QuestionnaireQuestion;
 }
