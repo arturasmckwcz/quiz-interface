@@ -1,10 +1,12 @@
 import { Arg, Query, Resolver } from 'type-graphql';
 
 import {
+  PatientInfo,
   PatientQuestionnaire,
   QuestionnaireAnswer,
   QuestionnaireQuestion,
 } from '../../models';
+import { patientInfoHelper } from '../helpers/patientInfo';
 
 @Resolver()
 export class PatientQuestionnaireResolvers {
@@ -26,9 +28,9 @@ export class PatientQuestionnaireResolvers {
     return [];
   }
 
-  @Query(() => PatientQuestionnaire)
+  @Query(() => PatientQuestionnaire, { nullable: true })
   async patientQuestionnaire(
-    @Arg('patientId', () => String) patientId: string,
+    @Arg('patientId', () => Number) patientId: string,
   ): Promise<PatientQuestionnaire | null> {
     try {
       return await PatientQuestionnaire.findOne({
@@ -41,6 +43,18 @@ export class PatientQuestionnaireResolvers {
           },
         ],
       });
+    } catch (error) {
+      console.error(error);
+    }
+    return null;
+  }
+
+  @Query(() => PatientInfo, { nullable: true })
+  async patientInfo(
+    @Arg('patientId', () => Number) patientId: number,
+  ): Promise<PatientInfo | null> {
+    try {
+      return await patientInfoHelper(patientId);
     } catch (error) {
       console.error(error);
     }
