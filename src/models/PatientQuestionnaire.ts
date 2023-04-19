@@ -19,7 +19,7 @@ export interface PatientQuestionnaireAttributes {
   patientId: number;
 
   /*
-   * normally these fields should be of Date type, but strings in the DB are not
+   * normally this field should be of Date type, but strings in the DB are not
    * convertible to Date so most probably getter/setter is needed to have it
    * in the DB as it is now while having Date type in the model for calculations,
    * etc.
@@ -27,8 +27,8 @@ export interface PatientQuestionnaireAttributes {
    * use in this challenge
    */
   completedAt?: string;
-  createdAt: string;
-  updatedAt: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 type PatientQuestionnaireAttributesDefaultValues =
   | 'id'
@@ -72,14 +72,14 @@ export class PatientQuestionnaire
   completedAt?: string;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
-  @Field(() => String)
-  createdAt: string;
+  @Column(DataType.DATE)
+  @Field(() => Date)
+  createdAt: Date;
 
   @AllowNull(false)
-  @Column(DataType.STRING)
-  @Field(() => String)
-  updatedAt: string;
+  @Column(DataType.DATE)
+  @Field(() => Date)
+  updatedAt: Date;
 
   @Field(() => [QuestionnaireAnswer], { nullable: true })
   @HasMany(() => QuestionnaireAnswer, 'questionnaireId')
