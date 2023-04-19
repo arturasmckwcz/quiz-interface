@@ -16,6 +16,11 @@ That would be just boilerplate code.
 
 Context middlewares for resolvers to use are empty because I didn't need, but they are crucial. Actually I did a bit of copypaste from other projects oh mine.
 
+## Auth
+
+I did very simple token based auth. Normally I'd use jwt tokens and some redis like storage for them. Also it might be needed to use short lifespan tokens and refresh them for a client upon validity of its refresh token.
+That would allow a client not to log in frequently while shortening window of opportunity for hacked token.
+
 ## Tests
 
 Lack of time. I have spent approx 5 hours on that. I know that it was recommended to stop after 3. But I wanted to deliver something working.
