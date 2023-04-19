@@ -30,4 +30,4 @@ export const getTestSequelize = (): Sequelize => {
   return testSequelize;
 };
 
-(() => getTestSequelize())();
+// (() => getTestSequelize())();
