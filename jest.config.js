@@ -4,5 +4,6 @@ module.exports = {
   globalSetup: '<rootDir>/src/test/setup.ts',
   globalTeardown: '<rootDir>/src/test/teardown.ts',
   testMatch: ['**/*.test.ts'],
+  setupFilesAfterEnv: ['reflect-metadata'],
   verbose: true,
 };

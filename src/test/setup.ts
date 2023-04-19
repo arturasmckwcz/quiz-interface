@@ -1,7 +1,7 @@
 import { getTestSequelize } from './db/testSequelize';
 
 export default async function globalSetup(): Promise<void> {
-  console.log('Running global setup');
+  console.log('\nRunning global setup');
 
   const testSequelize = getTestSequelize();
   await testSequelize.authenticate();
